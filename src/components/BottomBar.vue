@@ -1,5 +1,8 @@
 <template>
-  <div class="floating-bar slide-active" :class="!isScrolling || !isVisible ? 'slide-from' : 'slide-to'">
+  <div
+    class="floating-bar slide-active"
+    :class="isTopScroll || isUpDirection || isBottomScroll ? 'slide-from' : 'slide-to'"
+  >
     <div class="bar-items">
       <div class="bar-item active">
         <i class="fas fa-percent"></i>
@@ -13,16 +16,15 @@
   </div>
 </template>
 
-
 <script setup>
 import { computed, watch, ref } from 'vue'
 
 let scrollY = ref(0)
-let isVisible = ref(false)
+let isUpDirection = ref(true)
 
 watch(scrollY, (newY, oldY) => {
-  newY > oldY ? isVisible.value = true : isVisible.value = false
-})
+  newY > oldY ? isUpDirection.value = false : isUpDirection.value = true
+})  
 
 document.onscroll = (y) => {
   scrollY.value = y.path[1].scrollY
@@ -31,8 +33,12 @@ document.ontouchmove = (y) => {
   scrollY.value = y.view.scrollY
 }
 
-const isScrolling = computed(() => {
-  return scrollY.value <= 20 ? false : true
+const isTopScroll = computed(() => {
+  return scrollY.value <= 20 ? true : false
+})
+
+const isBottomScroll = computed(() => {
+  return (window.innerHeight + scrollY.value ) >= document.body.offsetHeight ? true : false
 })
 </script>
 
