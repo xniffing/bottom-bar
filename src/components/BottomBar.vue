@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="floating-bar slide-active"
-    :class="isScrolling ? 'slide-from' : 'slide-to'"
-  >
+  <div class="floating-bar slide-active" :class="isScrolling ? 'slide-from' : 'slide-to'">
     <div class="bar-items">
       <div class="bar-item active">
         <i class="fas fa-percent"></i>
@@ -34,7 +31,7 @@ export default {
   },
   computed: {
     isScrolling() {
-      return this.scrollY <= 10 ? true : false
+      return this.scrollY <= 20 ? true : false
     }
   }
 }
@@ -43,9 +40,6 @@ export default {
 
 
 <style scoped>
-a {
-  color: #42b983;
-}
 
 .floating-bar {
   position: fixed;
@@ -68,6 +62,7 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
+  cursor: pointer;
 }
 
 .bar-item > div {
@@ -75,7 +70,7 @@ a {
   margin-top: 0.2rem;
 }
 
-.bar-item:not(:last-child) {
+.bar-items > div:not(:last-child) {
   margin-right: 2rem;
 }
 
@@ -93,6 +88,7 @@ a {
   -o-transform: translateY(0); /* Opera */
   -ms-transform: translateY(0); /* Internet Explorer */
   transform: translateY(0); /* CSS3 */
+  opacity: 1;
 }
 .slide-to {
   -webkit-transform: translateY(115px); /* WebKit */
@@ -100,5 +96,6 @@ a {
   -o-transform: translateY(115px); /* Opera */
   -ms-transform: translateY(115px); /* Internet Explorer */
   transform: translateY(115px); /* CSS3 */
+  opacity: 0;
 }
 </style>
