@@ -34,7 +34,7 @@ export default {
   },
   computed: {
     isScrolling() {
-      return this.scrollY === 0 ? true : false
+      return this.scrollY <= 10 ? true : false
     }
   }
 }
