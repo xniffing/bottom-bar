@@ -13,34 +13,27 @@
   </div>
 </template>
 
-<script>
 
-export default {
-  data() {
-    return {
-      scrollY: 0
-    }
-  },
-  created() {
-    document.onscroll = (y) => {
-      this.scrollY = y.path[1].scrollY
-    }
-    document.ontouchmove = (y) => {
-      this.scrollY = y.view.scrollY
-    }
-  },
-  computed: {
-    isScrolling() {
-      return this.scrollY <= 20 ? true : false
-    }
-  }
+<script setup>
+
+import { computed } from 'vue'
+
+let scrollY = $ref(0)
+
+document.onscroll = (y) => {
+  scrollY = y.path[1].scrollY
 }
+document.ontouchmove = (y) => {
+  scrollY = y.view.scrollY
+}
+
+const isScrolling = computed(() => {
+  return scrollY <= 20 ? true : false
+})
 
 </script>
 
-
 <style scoped>
-
 .floating-bar {
   position: fixed;
   bottom: 1.2rem;
