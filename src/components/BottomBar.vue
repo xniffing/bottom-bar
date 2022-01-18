@@ -1,5 +1,5 @@
 <template>
-  <div class="floating-bar slide-active" :class="isScrolling ? 'slide-from' : 'slide-to'">
+  <div class="floating-bar slide-active" :class="!isScrolling ? 'slide-from' : 'slide-to'">
     <div class="bar-items">
       <div class="bar-item active">
         <i class="fas fa-percent"></i>
@@ -28,7 +28,7 @@ document.ontouchmove = (y) => {
 }
 
 const isScrolling = computed(() => {
-  return scrollY <= 20 ? true : false
+  return scrollY <= 20 ? false : true
 })
 
 </script>
