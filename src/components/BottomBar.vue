@@ -15,10 +15,14 @@
 
 
 <script setup>
-
-import { computed } from 'vue'
+import { computed, watch } from 'vue'
 
 let scrollY = $ref(0)
+
+watch(scrollY, (newY, oldY) => {
+  console.log(newY)
+  console.log(oldY)
+})
 
 document.onscroll = (y) => {
   scrollY = y.path[1].scrollY
@@ -30,7 +34,6 @@ document.ontouchmove = (y) => {
 const isScrolling = computed(() => {
   return scrollY <= 20 ? false : true
 })
-
 </script>
 
 <style scoped>
@@ -50,31 +53,25 @@ const isScrolling = computed(() => {
   display: flex;
   box-shadow: 0px 0 13px #0000007a;
 }
-
 .bar-item {
   display: flex;
   flex-direction: column;
   align-items: center;
   cursor: pointer;
 }
-
 .bar-item > div {
   font-size: 0.7em;
   margin-top: 0.2rem;
 }
-
 .bar-items > div:not(:last-child) {
   margin-right: 2rem;
 }
-
 .active {
   color: orange;
 }
-
 .slide-active {
   transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
-
 .slide-from {
   -webkit-transform: translateY(0); /* WebKit */
   -moz-transform: translateY(0); /* Mozilla */
