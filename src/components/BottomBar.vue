@@ -1,5 +1,5 @@
 <template>
-  <div class="floating-bar slide-active" :class="!isScrolling ? 'slide-from' : 'slide-to'">
+  <div class="floating-bar slide-active" :class="!isScrolling || !isVisible ? 'slide-from' : 'slide-to'">
     <div class="bar-items">
       <div class="bar-item active">
         <i class="fas fa-percent"></i>
@@ -15,24 +15,24 @@
 
 
 <script setup>
-import { computed, watch } from 'vue'
+import { computed, watch, ref } from 'vue'
 
-let scrollY = $ref(0)
+let scrollY = ref(0)
+let isVisible = ref(false)
 
 watch(scrollY, (newY, oldY) => {
-  console.log(newY)
-  console.log(oldY)
+  newY > oldY ? isVisible.value = true : isVisible.value = false
 })
 
 document.onscroll = (y) => {
-  scrollY = y.path[1].scrollY
+  scrollY.value = y.path[1].scrollY
 }
 document.ontouchmove = (y) => {
-  scrollY = y.view.scrollY
+  scrollY.value = y.view.scrollY
 }
 
 const isScrolling = computed(() => {
-  return scrollY <= 20 ? false : true
+  return scrollY.value <= 20 ? false : true
 })
 </script>
 
