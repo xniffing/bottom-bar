@@ -1,9 +1,10 @@
 <script setup>
 import BottomBar from './components/BottomBar.vue'
+import database from './data/database.js'
 </script>
 
 <template>
-  <BottomBar></BottomBar>
+  <BottomBar :data="database"></BottomBar>
 </template>
 
 <style>

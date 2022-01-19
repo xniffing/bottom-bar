@@ -4,13 +4,9 @@
     :class="isTopScroll || isUpDirection || isBottomScroll ? 'slide-from' : 'slide-to'"
   >
     <div class="bar-items">
-      <div class="bar-item active">
-        <i class="fas fa-percent"></i>
-        <div>Descontos</div>
-      </div>
-      <div class="bar-item">
-        <i class="fas fa-users"></i>
-        <div>Sugerir Parceiro</div>
+      <div v-for="item in props.data" :class="`bar-item ${item.active ? 'active' : ''}`">
+        <i :class="`fas fa-${item.icon}`"></i>
+        <div>{{ item.title }}</div>
       </div>
     </div>
   </div>
@@ -19,12 +15,16 @@
 <script setup>
 import { computed, watch, ref } from 'vue'
 
+const props = defineProps({
+  data: Object
+})
+
 let scrollY = ref(0)
 let isUpDirection = ref(true)
 
 watch(scrollY, (newY, oldY) => {
   newY > oldY ? isUpDirection.value = false : isUpDirection.value = true
-})  
+})
 
 document.onscroll = (y) => {
   scrollY.value = y.path[1].scrollY
@@ -38,7 +38,7 @@ const isTopScroll = computed(() => {
 })
 
 const isBottomScroll = computed(() => {
-  return (window.innerHeight + scrollY.value ) >= document.body.offsetHeight ? true : false
+  return (window.innerHeight + scrollY.value) >= document.body.offsetHeight ? true : false
 })
 </script>
 
@@ -51,7 +51,7 @@ const isBottomScroll = computed(() => {
   justify-content: space-around;
 }
 .bar-items {
-  padding: 0.7rem 2rem;
+  padding: 0.7rem 1.5rem;
   border-radius: 2rem;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -70,7 +70,7 @@ const isBottomScroll = computed(() => {
   margin-top: 0.2rem;
 }
 .bar-items > div:not(:last-child) {
-  margin-right: 2rem;
+  margin-right: 1.5rem;
 }
 .active {
   color: orange;
