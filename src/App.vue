@@ -25,10 +25,10 @@ html {
 @media only screen and (min-device-width: 300px) and (max-device-width: 600px) {
   #app {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     flex-wrap: nowrap;
     height: 85vh;
-    justify-content: flex-end;
+    justify-content: flex-start;
   }
 }
 </style>
