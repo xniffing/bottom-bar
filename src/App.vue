@@ -1,27 +1,34 @@
 <script setup>
 import BottomBar from './components/BottomBar.vue'
 import database from './data/database.js'
+import Modal from './components/Modal.vue';
+import Accordion from './components/Accordion.vue';
+import QuarterSelection from './components/QuarterSelection.vue';
 </script>
 
 <template>
-  <BottomBar :data="database"></BottomBar>
+  <QuarterSelection></QuarterSelection>
 </template>
 
 <style>
-html,
-body {
+html {
+  background-color: #191929;
   margin: 0;
   padding: 0;
+  color: rgb(170, 170, 170);
 }
 
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-image: url("./assets/page.png");
-  color: #dfdfdf;
-  height: 120vh;
-  background-size: contain;
-  background-repeat: no-repeat;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@media only screen and (min-device-width: 300px) and (max-device-width: 600px) {
+  #app {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    height: 85vh;
+    justify-content: flex-end;
+  }
 }
 </style>

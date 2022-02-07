@@ -17,6 +17,7 @@ let database = [
         'title': 'Configurar',
         'active': false
     }
+    
 ]
 
 export default database

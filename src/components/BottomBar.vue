@@ -68,9 +68,13 @@ const isBottomScroll = computed(() => {
 .bar-item > div {
   font-size: 0.7em;
   margin-top: 0.2rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 5rem;
 }
 .bar-items > div:not(:last-child) {
-  margin-right: 1.5rem;
+  margin-right: 1rem;
 }
 .active {
   color: orange;
