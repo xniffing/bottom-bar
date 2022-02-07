@@ -1,10 +1,10 @@
 <template>
     <div class="placeholder">
-        <div class="cursor" @click="prevQuarter">prev<ConfettiExplosion v-if="visibleLeft" :stageWidth="500" :particleCount="200" :force="0.3"/></div>
+        <div class="cursor" @click="prevQuarter">prev<ConfettiExplosion v-if="visibleLeft" :particleSize="5" :stageHeight="300" :stageWidth="800" :particleCount="200" :force="2.3"/></div>
         <div class="date">
             Quarter {{ quarter.number }} - {{ quarter.year }}
         </div>
-        <div class="cursor" @click="nextQuarter">next<ConfettiExplosion v-if="visibleRight" :stageWidth="500" :particleCount="200" :force="0.3"/></div>
+        <div class="cursor" @click="nextQuarter">next<ConfettiExplosion v-if="visibleRight" :particleSize="5" :stageHeight="300" :stageWidth="800" :particleCount="200" :force="2.3"/></div>
     </div>
     <div class="log placeholder">
         <div class="inline">

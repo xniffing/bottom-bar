@@ -8,8 +8,7 @@
   },
   "dependencies": {
     "vue": "^3.2.27",
-    "vue-confetti-explosion": "^1.0.1",
-    "vue-json-pretty": "^1.8.2"
+    "vue-confetti-explosion": "^1.0.1"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.0.0",
