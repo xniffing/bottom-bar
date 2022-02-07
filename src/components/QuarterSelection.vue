@@ -8,11 +8,11 @@
         <div class="inline">
             <div>
                 <b>Start:</b>
-                {{ quarter.range.start }}
+                {{ quarter.range.start.toLocaleDateString() }}
             </div>
             <div>
                 <b>End:</b>
-                {{ quarter.range.end }}
+                {{ quarter.range.end.toLocaleDateString() }}
             </div>
         </div>
     </div>
@@ -22,7 +22,6 @@
 
 import { computed, ref } from 'vue'
 
-let today = ref(new Date())
 let cursor = ref(new Date())
 
 const q = [4, 1, 2, 3]
@@ -30,7 +29,7 @@ const q = [4, 1, 2, 3]
 let qCalc = q[Math.floor((cursor.value.getMonth() / 3))];
 
 let actualQuarter = () => {
-    const startFullQuarterActual = new Date(cursor.value.getFullYear(), qCalc * 3, 1);
+    const startFullQuarterActual = new Date(cursor.value.getFullYear(), Math.floor((cursor.value.getMonth() / 3)) * 3, 1);
     const endFullQuarterActual = new Date(startFullQuarterActual.getFullYear(), startFullQuarterActual.getMonth() + 3, 0);
     return { "start": startFullQuarterActual, "end": endFullQuarterActual }
 }
